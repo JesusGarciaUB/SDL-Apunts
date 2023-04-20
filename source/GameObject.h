@@ -9,6 +9,7 @@ using namespace std;
 class GameObject {
 public:
 	GameObject(SDL_Renderer* renderer);
+	~GameObject();
 	void Render(SDL_Renderer* renderer);
 	void Update(float dt);
 private:

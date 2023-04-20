@@ -1,5 +1,4 @@
 #include "GameEngine.h"
-#include "GameObject.h"
 
 GameEngine::GameEngine(int windowWidth, int windowHeight)
 {
@@ -9,26 +8,57 @@ GameEngine::GameEngine(int windowWidth, int windowHeight)
 
 void GameEngine::Update()
 {
-	GameObject object(renderer);
-	bool playing = true;
-	while (playing) {
-		//Input
-		SDL_Event e;
-		while (SDL_PollEvent(&e) != 0) {
-			if (e.type == SDL_QUIT) playing = false;
+	//GameObject object(renderer);
+
+	//Time control variables
+	float dt = 0.f;
+	float lastTime = (double)SDL_GetPerformanceCounter() / (double)SDL_GetPerformanceFrequency();
+	const float FPS = 60;
+	const float frameTime = 1.0f / (float)FPS;
+
+	//Scenes
+	unordered_map<string, Scene*> gameScenes;
+
+	gameScenes["Main Menu"] = new MenuScene();
+	gameScenes["Gameplay"] = new GameplayScene();
+	gameScenes["Highscores"] = new HighscoreScene();
+
+	Scene* currentScene = gameScenes["Gameplay"];
+	currentScene->Start(renderer);
+
+	while (!IM.GetQuit()) {
+
+		//dt time control
+		float currentTime = (double)SDL_GetPerformanceCounter() / (double)SDL_GetPerformanceFrequency();
+		dt += currentTime - lastTime;
+		lastTime = currentTime;
+
+		if (dt > frameTime) {
+			//Input
+			IM.Listen();
+
+			//Logic
+			//object.Update(0.f);
+			currentScene->Update(dt);
+
+			//Render
+			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+			SDL_RenderClear(renderer);
+			currentScene->Render(renderer);
+			//object.Render(renderer);
+
+			//Objects
+			SDL_RenderPresent(renderer);
+
+			//Scene transition
+			if (currentScene->IsFinished()) { 
+				currentScene->Exit(); 
+				currentScene = gameScenes[currentScene->GetTargetScene()];
+				currentScene->Start(renderer);
+			}
+
+			dt -= frameTime;
 		}
-
-		//Logic
-		object.Update(0.f);
-
-		//Render
-		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-		SDL_RenderClear(renderer);
-		object.Render(renderer);
-
-		//Objects
-		//SDL_RenderCopyEx()
-		SDL_RenderPresent(renderer);
 	}
 }
 

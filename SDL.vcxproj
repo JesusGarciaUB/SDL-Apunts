@@ -21,11 +21,20 @@
   <ItemGroup>
     <ClCompile Include="source\GameEngine.cpp" />
     <ClCompile Include="source\GameObject.cpp" />
+    <ClCompile Include="source\GameplayScene.cpp" />
+    <ClCompile Include="source\HighscoreScene.cpp" />
+    <ClCompile Include="source\InputManager.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\MenuScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\GameEngine.h" />
     <ClInclude Include="source\GameObject.h" />
+    <ClInclude Include="source\GameplayScene.h" />
+    <ClInclude Include="source\HighscoreScene.h" />
+    <ClInclude Include="source\InputManager.h" />
+    <ClInclude Include="source\MenuScene.h" />
+    <ClInclude Include="source\Scene.h" />
     <ClInclude Include="source\Vector2.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
