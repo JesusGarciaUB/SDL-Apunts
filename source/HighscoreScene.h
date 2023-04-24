@@ -1,7 +1,6 @@
 #pragma once
 #include "Scene.h"
 #include <SDL.h>
-#include "InputManager.h"
 
 using namespace std;
 

@@ -2,6 +2,7 @@
 #include <vector>
 #include "GameObject.h"
 #include <SDL.h>
+#include "InputManager.h"
 
 using namespace std;
 

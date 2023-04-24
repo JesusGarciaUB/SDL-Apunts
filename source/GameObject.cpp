@@ -26,7 +26,7 @@ void GameObject::Update(float dt) {
 
 void GameObject::Render(SDL_Renderer* renderer) {
 
-	position = Vector2(100, 100);
+	/*position = Vector2(100, 100);
 	SDL_Rect source{ 0, 0, //top-left
 					31, 39 };	//bottom-right
 	SDL_Rect destination{ 
@@ -36,5 +36,5 @@ void GameObject::Render(SDL_Renderer* renderer) {
 		source.h * scale.y};
 
 	rotation += 1;
-	SDL_RenderCopyEx(renderer, texture, &source, &destination, rotation, NULL, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(renderer, texture, &source, &destination, rotation, NULL, SDL_FLIP_NONE);*/
 }

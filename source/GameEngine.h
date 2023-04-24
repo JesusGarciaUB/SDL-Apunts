@@ -1,7 +1,6 @@
 #pragma once
 #include <SDL.h>
 #include <iostream>
-#include "GameObject.h"
 #include "InputManager.h"
 #include "MenuScene.h"
 #include "GameplayScene.h"

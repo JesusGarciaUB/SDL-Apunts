@@ -10,9 +10,9 @@ class GameObject {
 public:
 	GameObject(SDL_Renderer* renderer);
 	~GameObject();
-	void Render(SDL_Renderer* renderer);
-	void Update(float dt);
-private:
+	virtual void Render(SDL_Renderer* renderer) = 0;
+	virtual void Update(float dt) = 0;
+protected:
 	Vector2 position;
 	float rotation;
 	Vector2 scale;
