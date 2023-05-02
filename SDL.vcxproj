@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\Asteroid.cpp" />
     <ClCompile Include="source\GameEngine.cpp" />
     <ClCompile Include="source\GameObject.cpp" />
     <ClCompile Include="source\GameplayScene.cpp" />
@@ -29,6 +30,7 @@
     <ClCompile Include="source\Spaceship.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Asteroid.h" />
     <ClInclude Include="source\GameEngine.h" />
     <ClInclude Include="source\GameObject.h" />
     <ClInclude Include="source\GameplayScene.h" />

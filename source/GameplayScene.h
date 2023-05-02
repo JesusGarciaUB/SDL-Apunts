@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "Spaceship.h"
+#include "Asteroid.h"
 
 using namespace std;
 
@@ -13,5 +14,5 @@ public:
 	void Render(SDL_Renderer* rend) override;
 	void Exit() override;
 private:
-
+	Spaceship* spaceship;
 };
