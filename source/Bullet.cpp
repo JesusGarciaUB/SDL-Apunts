@@ -5,6 +5,7 @@ Bullet::Bullet(SDL_Renderer* rend, Vector2 pos, float rot, Vector2 scl, float tu
 	rotation = rot;
 	scale = scl;
 	TimeUntilDeath = tud;
+	currentTime = 0;
 
 	velocity = Vector2();
 	angularVelocity = 0.0f;
@@ -26,5 +27,6 @@ Bullet::Bullet(SDL_Renderer* rend, Vector2 pos, float rot, Vector2 scl, float tu
 }
 
 void Bullet::DestroyOnLeave() {
-	
+	currentTime += frameTime;
+	if (currentTime >= TimeUntilDeath) Destroy();
 }
