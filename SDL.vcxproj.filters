@@ -72,6 +72,15 @@
     <ClCompile Include="source\UIText.cpp">
       <Filter>Source Files\UIObjects</Filter>
     </ClCompile>
+    <ClCompile Include="source\Bullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\BigAsteroid.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\SmallAsteroid.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\GameEngine.h">
@@ -117,6 +126,12 @@
       <Filter>Header Files\UIObject</Filter>
     </ClInclude>
     <ClInclude Include="source\Bullet.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\BigAsteroid.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SmallAsteroid.h">
       <Filter>Header Files\GameObject</Filter>
     </ClInclude>
   </ItemGroup>

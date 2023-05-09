@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Asteroid.cpp" />
+    <ClCompile Include="source\BigAsteroid.cpp" />
     <ClCompile Include="source\Bullet.cpp" />
     <ClCompile Include="source\GameEngine.cpp" />
     <ClCompile Include="source\GameObject.cpp" />
@@ -28,12 +29,14 @@
     <ClCompile Include="source\InputManager.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\MenuScene.cpp" />
+    <ClCompile Include="source\SmallAsteroid.cpp" />
     <ClCompile Include="source\Spaceship.cpp" />
     <ClCompile Include="source\UIImage.cpp" />
     <ClCompile Include="source\UIText.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Asteroid.h" />
+    <ClInclude Include="source\BigAsteroid.h" />
     <ClInclude Include="source\Bullet.h" />
     <ClInclude Include="source\GameEngine.h" />
     <ClInclude Include="source\GameObject.h" />
@@ -42,6 +45,7 @@
     <ClInclude Include="source\InputManager.h" />
     <ClInclude Include="source\MenuScene.h" />
     <ClInclude Include="source\Scene.h" />
+    <ClInclude Include="source\SmallAsteroid.h" />
     <ClInclude Include="source\Spaceship.h" />
     <ClInclude Include="source\UIImage.h" />
     <ClInclude Include="source\UIObject.h" />
