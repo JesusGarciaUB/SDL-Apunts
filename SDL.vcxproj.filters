@@ -116,5 +116,8 @@
     <ClInclude Include="source\UIText.h">
       <Filter>Header Files\UIObject</Filter>
     </ClInclude>
+    <ClInclude Include="source\Bullet.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
