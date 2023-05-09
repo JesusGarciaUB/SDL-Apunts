@@ -9,4 +9,5 @@ public:
 private:
 	
 	void UpdateMovement(float dt) override;
+	void Shoot();
 };
