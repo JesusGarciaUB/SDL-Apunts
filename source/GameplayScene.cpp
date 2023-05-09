@@ -19,6 +19,8 @@ void GameplayScene::Update(float dt)
 		objects.push_back(new Bullet(renderer, spaceship->GetPosition(), spaceship->GetRotation(), Vector2(1.f, 1.f), 3.f));
 	}
 
+	
+
 	for (auto it = objects.begin(); it != objects.end(); it++) {
 		if (Asteroid* a = dynamic_cast<Asteroid*>(*it)) {
 			Vector2 sToA = a->GetPosition() - spaceship->GetPosition();
@@ -28,6 +30,9 @@ void GameplayScene::Update(float dt)
 			if (distanceSquare < radiusSum) {
 				spaceship->Destroy();
 				a->Destroy();
+
+				finished = true;
+				targetScene = "Main Menu";
 			}
 
 			for (auto it2 = objects.begin(); it2 != objects.end(); it2++) {
@@ -40,7 +45,22 @@ void GameplayScene::Update(float dt)
 						b->Destroy();
 						a->Destroy();
 					}
+				/*
+					if (a->IsPendingDestroy()) {
+						
+						objects.push_back(new MediumAsteroid(renderer, a->GetPosition(), 4));
+						objects.push_back(new MediumAsteroid(renderer, a->GetPosition(), 4));
+					}
+				
+				
+					if (a->IsPendingDestroy()) {
+						objects.push_back(new SmallAsteroid(renderer, a->GetPosition(), 4));
+						objects.push_back(new SmallAsteroid(renderer, a->GetPosition(), 4));
+					}
+				*/
 				}
+				
+				
 			}
 		}
 	}

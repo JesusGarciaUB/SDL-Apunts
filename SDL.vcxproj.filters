@@ -81,6 +81,9 @@
     <ClCompile Include="source\SmallAsteroid.cpp">
       <Filter>Source Files\GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="source\MediumAsteroid.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\GameEngine.h">
@@ -132,6 +135,9 @@
       <Filter>Header Files\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="source\SmallAsteroid.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\MediumAsteroid.h">
       <Filter>Header Files\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
