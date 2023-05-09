@@ -5,9 +5,6 @@
 class Spaceship : public GameObject {
 public:
 	Spaceship(SDL_Renderer* renderer, Vector2 pos, float rot, Vector2 scl);
-
 private:
-	
 	void UpdateMovement(float dt) override;
-	void Shoot();
 };

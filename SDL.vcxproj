@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Asteroid.cpp" />
+    <ClCompile Include="source\Bullet.cpp" />
     <ClCompile Include="source\GameEngine.cpp" />
     <ClCompile Include="source\GameObject.cpp" />
     <ClCompile Include="source\GameplayScene.cpp" />

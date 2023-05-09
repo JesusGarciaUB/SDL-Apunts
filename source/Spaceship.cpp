@@ -24,7 +24,6 @@ void Spaceship::UpdateMovement(float dt)
 	angularAcceleration = 0;
 	acceleration = Vector2();
 
-	if (IM.GetKey(SDLK_SPACE, HOLD) || IM.GetKey(SDLK_SPACE, DOWN))  
 	if (IM.GetKey(SDLK_RIGHT, HOLD) || IM.GetKey(SDLK_RIGHT, DOWN)) angularAcceleration = dt * angularAccelerationFactor;
 	if (IM.GetKey(SDLK_LEFT, HOLD) || IM.GetKey(SDLK_LEFT, DOWN)) angularAcceleration = dt * -angularAccelerationFactor;
 	if (IM.GetKey(SDLK_UP, HOLD) || IM.GetKey(SDLK_UP, DOWN)) {
@@ -32,13 +31,8 @@ void Spaceship::UpdateMovement(float dt)
 		float rotationInRadians = rotation * (M_PI / 180.f);
 		dir.x = cos(rotationInRadians);
 		dir.y = sin(rotationInRadians);
-
 		acceleration = dir * accelerationFactor;
 	}
 
 	GameObject::UpdateMovement(dt);
-}
-
-void Spaceship::Shoot() {
-
 }

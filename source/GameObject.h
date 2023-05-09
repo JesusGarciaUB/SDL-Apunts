@@ -16,6 +16,7 @@ public:
 	virtual void Destroy() { pendingDestroy = true; }
 	bool IsPendingDestroy() { return pendingDestroy; }
 	Vector2 GetPosition() { return position; }
+	float GetRotation() { return rotation; }
 protected:
 	//Flags
 	bool pendingDestroy = false;

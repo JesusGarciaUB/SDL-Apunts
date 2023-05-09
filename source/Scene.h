@@ -10,8 +10,8 @@ public:
 	Scene() = default;
 
 	virtual void Start(SDL_Renderer* rend) { finished = false; }
-	virtual void Update(float dt) { 
-
+	virtual void Update(float dt) {
+		
 		for (int x = objects.size() - 1; x >= 0; x--) {
 			if (objects[x]->IsPendingDestroy()) {
 				delete objects[x];

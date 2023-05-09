@@ -3,6 +3,7 @@
 void GameplayScene::Start(SDL_Renderer* rend)
 {
 	Scene::Start(rend);
+	renderer = rend;
 	spaceship = new Spaceship(rend, Vector2(100.f, 100.f), 0.0f, Vector2(1.f, 1.f));
 	objects.push_back(spaceship);
 	for (int i = 0; i < 10; i++) {
@@ -14,6 +15,10 @@ void GameplayScene::Update(float dt)
 {
 	Scene::Update(dt);
 	
+	if (IM.GetKey(SDLK_SPACE, DOWN)) {
+		objects.push_back(new Bullet(renderer, spaceship->GetPosition(), spaceship->GetRotation(), Vector2(1.f, 1.f), 3.f));
+	}
+
 	for (auto it = objects.begin(); it != objects.end(); it++) {
 		if (Asteroid* a = dynamic_cast<Asteroid*>(*it)) {
 			Vector2 sToA = a->GetPosition() - spaceship->GetPosition();
@@ -24,6 +29,19 @@ void GameplayScene::Update(float dt)
 				spaceship->Destroy();
 				a->Destroy();
 			}
+
+			for (auto it2 = objects.begin(); it2 != objects.end(); it2++) {
+				if (Bullet* b = dynamic_cast<Bullet*>(*it2)) {
+					Vector2 sToB = a->GetPosition() - b->GetPosition();
+					float distanceSquare2 = sToB.x * sToB.x + sToB.y * sToB.y;
+					float radiusSum2 = 20 + 20;
+					radiusSum2 *= radiusSum2;
+					if (distanceSquare2 < radiusSum2) {
+						b->Destroy();
+						a->Destroy();
+					}
+				}
+			}
 		}
 	}
 
@@ -32,7 +50,7 @@ void GameplayScene::Update(float dt)
 void GameplayScene::Render(SDL_Renderer* rend)
 {
 	Scene::Render(rend);
-	cout << "Gameplay" << endl;
+	std::cout << "Gameplay" << std::endl;
 }
 
 void GameplayScene::Exit()

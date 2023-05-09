@@ -2,8 +2,7 @@
 #include "Scene.h"
 #include "Spaceship.h"
 #include "Asteroid.h"
-
-using namespace std;
+#include "Bullet.h"
 
 class GameplayScene : public Scene {
 public:
@@ -15,4 +14,5 @@ public:
 	void Exit() override;
 private:
 	Spaceship* spaceship;
+	SDL_Renderer* renderer;
 };
