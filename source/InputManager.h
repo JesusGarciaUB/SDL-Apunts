@@ -2,7 +2,6 @@
 #include <SDL.h>
 #include <unordered_map>
 
-using namespace std;
 enum KeyState {EMPTY, DOWN, UP, HOLD};
 
 #define IM InputManager::Instance()
@@ -27,7 +26,7 @@ private:
 	InputManager() { quit = false; }
 
 	//Keys and mouse
-	unordered_map<Sint32, KeyState> keys;
+	std::unordered_map<Sint32, KeyState> keys;
 	int mouseX, mouseY;
 	bool leftClick;
 	bool quit;

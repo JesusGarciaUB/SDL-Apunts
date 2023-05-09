@@ -7,10 +7,10 @@ GameObject::GameObject(SDL_Renderer* renderer, int width, int height, Vector2 pa
 	scale = Vector2(1.f, 1.f);
 
 	SDL_Surface* surf = IMG_Load("resources/asteroids_spritesheet.png");
-	if (!surf) cout << "Error load surface: " << SDL_GetError();
+	if (!surf) std::cout << "Error load surface: " << SDL_GetError();
 
 	texture = SDL_CreateTextureFromSurface(renderer, surf);
-	if (!texture) cout << "Error load texture: " << SDL_GetError();
+	if (!texture) std::cout << "Error load texture: " << SDL_GetError();
 
 	SDL_FreeSurface(surf);
 }

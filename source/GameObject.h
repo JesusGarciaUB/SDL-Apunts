@@ -6,8 +6,6 @@
 #include "Utils.h"
 #include <stdlib.h>
 
-using namespace std;
-
 class GameObject {
 public:
 	GameObject(SDL_Renderer* renderer, int width, int height, Vector2 pa);

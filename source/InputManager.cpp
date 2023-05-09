@@ -3,7 +3,7 @@
 void InputManager::Listen()
 {
 	//Updates the state from previos frame
-	for (unordered_map<Sint32, KeyState>::iterator it = keys.begin(); it != keys.end(); it++) {
+	for (std::unordered_map<Sint32, KeyState>::iterator it = keys.begin(); it != keys.end(); it++) {
 		if (it->second == DOWN) it->second = HOLD;
 		if (it->second == UP) it->second = EMPTY;
 	}

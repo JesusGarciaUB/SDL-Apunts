@@ -3,8 +3,7 @@
 #include "GameObject.h"
 #include <SDL.h>
 #include "InputManager.h"
-
-using namespace std;
+#include "UIObject.h"
 
 class Scene {
 public:
@@ -21,15 +20,20 @@ public:
 		}
 
 		for (auto it = objects.begin(); it != objects.end(); it++) (*it)->Update(dt); 
+		for (auto it = uiObjects.begin(); it != uiObjects.end(); it++) (*it)->Update(dt);
 	}
-	virtual void Render(SDL_Renderer* rend) { for (auto it = objects.begin(); it != objects.end(); it++) (*it)->Render(rend); }
+	virtual void Render(SDL_Renderer* rend) { 
+		for (auto it = objects.begin(); it != objects.end(); it++) (*it)->Render(rend);
+		for (auto it = uiObjects.begin(); it != uiObjects.end(); it++) (*it)->Render(rend);
+	}
 	virtual void Exit() = 0;
 	bool IsFinished() { return finished; }
-	string GetTargetScene() { return targetScene; }
+	std::string GetTargetScene() { return targetScene; }
 
 protected:
-	vector<GameObject*> objects;
+	std::vector<GameObject*> objects;
+	std::vector<UIObject*> uiObjects;
 
 	bool finished = false;
-	string targetScene;
+	std::string targetScene;
 };

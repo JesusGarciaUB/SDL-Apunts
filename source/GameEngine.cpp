@@ -23,7 +23,7 @@ void GameEngine::Update()
 	gameScenes["Gameplay"] = new GameplayScene();
 	gameScenes["Highscores"] = new HighscoreScene();
 
-	Scene* currentScene = gameScenes["Gameplay"];
+	Scene* currentScene = gameScenes["Main Menu"];
 	currentScene->Start(renderer);
 
 	while (!IM.GetQuit()) {
@@ -76,6 +76,7 @@ void GameEngine::InitSDL()
 {
 	int result = SDL_Init(SDL_INIT_VIDEO);
 	if (result < 0) cout << "SDL_Init error: " << SDL_GetError();
+	if (TTF_Init() == -1) std::cout << "TTF_Init error: " << TTF_GetError();
 }
 
 void GameEngine::InitWindowAndRenderer(int windowWidth, int windowHeight)

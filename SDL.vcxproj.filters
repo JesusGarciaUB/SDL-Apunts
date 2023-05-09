@@ -31,6 +31,12 @@
     <Filter Include="Source Files\GameObject">
       <UniqueIdentifier>{8ac6fb65-442d-475f-893f-f78606255db8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\UIObject">
+      <UniqueIdentifier>{072d99b0-c91d-4a11-9ab0-c694897d5c0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UIObjects">
+      <UniqueIdentifier>{930bd6fa-0724-4974-a0c0-cbdb06fbb7d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -59,6 +65,12 @@
     </ClCompile>
     <ClCompile Include="source\Asteroid.cpp">
       <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\UIImage.cpp">
+      <Filter>Source Files\UIObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="source\UIText.cpp">
+      <Filter>Source Files\UIObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +106,15 @@
     </ClInclude>
     <ClInclude Include="source\Asteroid.h">
       <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\UIObject.h">
+      <Filter>Header Files\UIObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\UIImage.h">
+      <Filter>Header Files\UIObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\UIText.h">
+      <Filter>Header Files\UIObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

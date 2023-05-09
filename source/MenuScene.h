@@ -1,8 +1,8 @@
 #pragma once
 #include "Scene.h"
 #include <SDL.h>
-
-using namespace std;
+#include "UIImage.h"
+#include "UIText.h"
 
 class MenuScene : public Scene {
 public:
