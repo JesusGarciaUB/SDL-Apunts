@@ -5,7 +5,6 @@
 #include "BigAsteroid.h"
 #include "MediumAsteroid.h"
 #include "SmallAsteroid.h"
-
 #include "Bullet.h"
 
 class GameplayScene : public Scene {

@@ -8,7 +8,6 @@ private:
 	void DestroyOnLeave();
 	float TimeUntilDeath;
 	float frameTime = 1.0f / (float)60;
-	float currentTime;
 public:
-	Bullet(SDL_Renderer* rend, Vector2 pos, float rot, Vector2 scl, float tud);
+	Bullet(SDL_Renderer* rend, Vector2 pos, float rot, Vector2 scl, float tud, float velocityFactor);
 };

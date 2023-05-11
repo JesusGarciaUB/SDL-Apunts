@@ -16,9 +16,9 @@ inline Vector2 CalculatePositionInRadius(float r) {
 
 inline float CalculateRadius(int width, int height) {
 	//Calculate radius
-	float a = (float)GAME_WIDTH / 2.f;
+	float a = (float)width / 2.f;
 	a *= a;	//power of 2
-	float b = (float)GAME_HEIGHT / 2.f;
+	float b = (float)height / 2.f;
 	b *= b;
 
 	float h = sqrt(a + b); //radius
@@ -32,4 +32,13 @@ inline Vector2 ClampPositionToRectangle(Vector2 pos, float halfWidth, float half
 	if (pos.y < -halfHeight) pos.y = -halfHeight;
 	if (pos.x < -halfWidth) pos.x = -halfWidth;
 	return pos;
+}
+
+inline bool CheckColision(Vector2 posA, float radiusA, Vector2 posB, float radiusB) {
+	Vector2 sToA = posA - posB;
+	float distanceSquare = sToA.x * sToA.x + sToA.y * sToA.y;
+	float radiusSum = radiusA * 0.7f + radiusB * 0.7f;
+	radiusSum *= radiusSum;
+	
+	return distanceSquare < radiusSum;
 }

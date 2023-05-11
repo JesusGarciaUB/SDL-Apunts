@@ -17,6 +17,8 @@ public:
 	bool IsPendingDestroy() { return pendingDestroy; }
 	Vector2 GetPosition() { return position; }
 	float GetRotation() { return rotation; }
+	float GetRadius() { return radius * (scale.x > scale.y ? scale.x : scale.y); }
+
 protected:
 	//Flags
 	bool pendingDestroy = false;
@@ -46,4 +48,6 @@ protected:
 	float angularAcceleration;
 	float accelerationFactor;
 	float angularAccelerationFactor;
+
+	float radius;
 };

@@ -6,6 +6,8 @@ GameObject::GameObject(SDL_Renderer* renderer, int width, int height, Vector2 pa
 	rotation = 0.f;
 	scale = Vector2(1.f, 1.f);
 
+	radius = CalculateRadius(width, height);
+
 	SDL_Surface* surf = IMG_Load("resources/asteroids_spritesheet.png");
 	if (!surf) std::cout << "Error load surface: " << SDL_GetError();
 

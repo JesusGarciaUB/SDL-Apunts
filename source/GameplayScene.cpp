@@ -15,33 +15,30 @@ void GameplayScene::Update(float dt)
 {
 	Scene::Update(dt);
 	
-	if (IM.GetKey(SDLK_SPACE, DOWN)) {
-		objects.push_back(new Bullet(renderer, spaceship->GetPosition(), spaceship->GetRotation(), Vector2(1.f, 1.f), 3.f));
+	if (spaceship != nullptr) {
+		if (IM.GetKey(SDLK_SPACE, DOWN)) {
+			objects.push_back(new Bullet(renderer, spaceship->GetPosition(), spaceship->GetRotation(), Vector2(1.f, 1.f), 1.2f, 500.f));
+		}
 	}
 
 	
 
 	for (auto it = objects.begin(); it != objects.end(); it++) {
 		if (Asteroid* a = dynamic_cast<Asteroid*>(*it)) {
-			Vector2 sToA = a->GetPosition() - spaceship->GetPosition();
-			float distanceSquare = sToA.x * sToA.x + sToA.y * sToA.y;
-			float radiusSum = 20 + 20;
-			radiusSum *= radiusSum;
-			if (distanceSquare < radiusSum) {
-				spaceship->Destroy();
-				a->Destroy();
+			if (spaceship != nullptr) {
+				if (CheckColision(a->GetPosition(), a->GetRadius(), spaceship->GetPosition(), spaceship->GetRadius())) {
+					spaceship->Destroy();
+					spaceship = nullptr;
+					a->Destroy();
 
-				finished = true;
-				targetScene = "Main Menu";
+					finished = true;
+					targetScene = "Main Menu";
+				}
 			}
 
-			for (auto it2 = objects.begin(); it2 != objects.end(); it2++) {
+			for (auto it2 = objects.begin(); it2 != objects.end() && !a->IsPendingDestroy(); it2++) {
 				if (Bullet* b = dynamic_cast<Bullet*>(*it2)) {
-					Vector2 sToB = a->GetPosition() - b->GetPosition();
-					float distanceSquare2 = sToB.x * sToB.x + sToB.y * sToB.y;
-					float radiusSum2 = 20 + 20;
-					radiusSum2 *= radiusSum2;
-					if (distanceSquare2 < radiusSum2) {
+					if (CheckColision(a->GetPosition(), a->GetRadius(), b->GetPosition(), b->GetRadius())) {
 						b->Destroy();
 						a->Destroy();
 					}

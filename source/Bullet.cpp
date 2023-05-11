@@ -1,13 +1,11 @@
 #include "Bullet.h"
 
-Bullet::Bullet(SDL_Renderer* rend, Vector2 pos, float rot, Vector2 scl, float tud) : GameObject(rend, 9, 9, Vector2(33, 32)) {
+Bullet::Bullet(SDL_Renderer* rend, Vector2 pos, float rot, Vector2 scl, float tud, float velocityFactor) : GameObject(rend, 7, 8, Vector2(33, 31)) {
 	position = pos;
 	rotation = rot;
 	scale = scl;
 	TimeUntilDeath = tud;
-	currentTime = 0;
 
-	velocity = Vector2();
 	angularVelocity = 0.0f;
 
 	angularAcceleration = 0.0f;
@@ -23,10 +21,10 @@ Bullet::Bullet(SDL_Renderer* rend, Vector2 pos, float rot, Vector2 scl, float tu
 	dir.x = cos(rotationInRadians);
 	dir.y = sin(rotationInRadians);
 
-	velocity = dir * accelerationFactor;
+	velocity = dir * velocityFactor;
 }
 
 void Bullet::DestroyOnLeave() {
-	currentTime += frameTime;
-	if (currentTime >= TimeUntilDeath) Destroy();
+	TimeUntilDeath -= frameTime;
+	if (0 >= TimeUntilDeath) Destroy();
 }
