@@ -42,3 +42,13 @@ inline bool CheckColision(Vector2 posA, float radiusA, Vector2 posB, float radiu
 	
 	return distanceSquare < radiusSum;
 }
+
+inline bool CheckPointInsideCenteredRectangle(Vector2 point, Vector2 rectCenter, int w, int h) {
+	float distX = abs(point.x - rectCenter.x);
+	float distY = abs(point.y - rectCenter.y);
+
+	bool insideX = distX < (float)w / 2.0f;
+	bool insideY = distY < (float)h / 2.0f;
+
+	return insideX && insideY;
+}

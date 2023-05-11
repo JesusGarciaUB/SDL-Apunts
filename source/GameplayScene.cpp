@@ -17,7 +17,8 @@ void GameplayScene::Update(float dt)
 	
 	if (spaceship != nullptr) {
 		if (IM.GetKey(SDLK_SPACE, DOWN)) {
-			objects.push_back(new Bullet(renderer, spaceship->GetPosition(), spaceship->GetRotation(), Vector2(1.f, 1.f), 1.2f, 500.f));
+			Vector2 offset = Vector2(cos(spaceship->GetRotation() * M_PI / 180), sin(spaceship->GetRotation() * M_PI / 180)) * spaceship->GetRadius();
+			objects.push_back(new Bullet(renderer, spaceship->GetPosition() + offset, spaceship->GetRotation(), Vector2(1.f, 1.f), 1.2f, 500.f));
 		}
 	}
 
