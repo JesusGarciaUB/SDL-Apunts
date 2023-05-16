@@ -17,6 +17,7 @@ Spaceship::Spaceship(SDL_Renderer* renderer, Vector2 pos, float rot, Vector2 scl
 
 	accelerationFactor = 500.f;
 	angularAccelerationFactor = 100000.f;
+	hp = 3;
 }
 
 void Spaceship::UpdateMovement(float dt)

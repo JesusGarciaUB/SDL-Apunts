@@ -10,9 +10,9 @@ public:
 	void Update(float dt) override {}
 	void Render(SDL_Renderer* rend) override;
 	void ChangeText(std::string newText) { SDL_DestroyTexture(texture); text = newText; GenerateTexture(renderer); }
-
-protected:
 	void GenerateTexture(SDL_Renderer* rend) override;
+protected:
+	
 	std::string text;
 	std::string fontPath;
 	SDL_Renderer* renderer;

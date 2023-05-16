@@ -6,6 +6,8 @@
 #include "MediumAsteroid.h"
 #include "SmallAsteroid.h"
 #include "Bullet.h"
+#include "UIText.h"
+#include <string>
 
 class GameplayScene : public Scene {
 public:
@@ -18,4 +20,7 @@ public:
 private:
 	Spaceship* spaceship;
 	SDL_Renderer* renderer;
+	UIText* lives;
+	UIText* score;
+	int scoreInt;
 };

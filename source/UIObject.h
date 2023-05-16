@@ -19,4 +19,7 @@ public:
 
 	virtual void Update(float dt) = 0;
 	virtual void Render(SDL_Renderer* rend) = 0;
+	Vector2 GetPos() { return position; }
+	int GetWidth() { return width; }
+	int GetHeight() { return height; }
 };

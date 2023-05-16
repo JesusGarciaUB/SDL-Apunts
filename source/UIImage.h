@@ -5,10 +5,9 @@
 
 class UIImage : public UIObject {
 protected:
-	void GenerateTexture(SDL_Renderer* rend) override;
-
 	std::string resourcePath;
 public:
+	void GenerateTexture(SDL_Renderer* rend) override;
 	UIImage(SDL_Renderer* rend, Vector2 pos, float rot, Vector2 scl, std::string path, int w, int h, Vector2 pad) : UIObject(rend, pos, rot, scl), resourcePath(path) {
 		width = w;
 		height = h;

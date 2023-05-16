@@ -32,6 +32,7 @@
     <ClCompile Include="source\MenuScene.cpp" />
     <ClCompile Include="source\SmallAsteroid.cpp" />
     <ClCompile Include="source\Spaceship.cpp" />
+    <ClCompile Include="source\UIButton.cpp" />
     <ClCompile Include="source\UIImage.cpp" />
     <ClCompile Include="source\UIText.cpp" />
   </ItemGroup>
@@ -49,6 +50,7 @@
     <ClInclude Include="source\Scene.h" />
     <ClInclude Include="source\SmallAsteroid.h" />
     <ClInclude Include="source\Spaceship.h" />
+    <ClInclude Include="source\UIButton.h" />
     <ClInclude Include="source\UIImage.h" />
     <ClInclude Include="source\UIObject.h" />
     <ClInclude Include="source\UIText.h" />

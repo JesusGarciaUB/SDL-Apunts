@@ -3,39 +3,52 @@
 void MenuScene::Start(SDL_Renderer* rend)
 {
 	Scene::Start(rend);
-	uiObjects.push_back(new UIImage(
-		rend,
-		Vector2(250, 250), 0.f, Vector2(0.2f, 0.2f),
-		"resources/obama.png",
-		2500, 2500, Vector2(0, 0)));
+	
 	uiObjects.push_back(new UIText(
 		rend,
-		Vector2(250, 250), 0.f, Vector2(1, 1),
-		"Hola bona tarda",
+		Vector2(GAME_WIDTH/2, GAME_HEIGHT/4), 0.f, Vector2(1, 1),
+		"ASTEROIDS",
 		"resources/Hyperspace.ttf"
+	));
+	
+	uiObjects.push_back(new UIText(
+		rend,
+		Vector2(120, (GAME_HEIGHT / 4 + GAME_HEIGHT / 2)), 0.f, Vector2(1, 1),
+		"Jesus Garcia",
+		"resources/Hyperspace.ttf"
+	));
+
+	uiObjects.push_back(new UIText(
+		rend,
+		Vector2(155, (GAME_HEIGHT / 4 + GAME_HEIGHT / 2) + 25), 0.f, Vector2(1, 1),
+		"Miquel Hernandez",
+		"resources/Hyperspace.ttf"
+	));
+
+	uiObjects.push_back(new UIButton(
+		rend, Vector2(GAME_HEIGHT / 2, GAME_WIDTH / 2), 0.f, Vector2(1, 1),
+		new UIText(
+			rend, Vector2(GAME_HEIGHT / 2, GAME_WIDTH / 2), 0.f, Vector2(1, 1),
+			"Gameplay",
+			"resources/Hyperspace.ttf"
+		),
+		160, 30
 	));
 }
 
 void MenuScene::Update(float dt)
 {
 	Scene::Update(dt);
-
-	if (IM.GetKey(SDLK_SPACE, DOWN)) {
+	
+	if (IM.GetLeftClick() && CheckPointInsideCenteredRectangle(Vector2(IM.GetMouseX(), IM.GetMouseY()), uiObjects[3]->GetPos(), uiObjects[3]->GetWidth(), uiObjects[3]->GetHeight())) {
 		finished = true;
 		targetScene = "Gameplay";
-	}
-
-	
-	if (IM.GetKey(SDLK_h, DOWN)) {
-		finished = true;
-		targetScene = "Highscores";
 	}
 }
 
 void MenuScene::Render(SDL_Renderer* rend)
 {
 	Scene::Render(rend);
-	std::cout << "Main Menu" << std::endl;
 }
 
 void MenuScene::Exit()
