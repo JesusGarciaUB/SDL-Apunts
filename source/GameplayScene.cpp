@@ -2,10 +2,14 @@
 
 void GameplayScene::Start(SDL_Renderer* rend)
 {
+	currentState = GameplayState::ALIVE;
+	currentStateTime = 0.0f;
+	spaceshipHealth = 3;
+
 	Scene::Start(rend);
 	renderer = rend;
-	spaceship = new Spaceship(rend, Vector2(GAME_WIDTH / 2, GAME_HEIGHT / 2), 0.0f, Vector2(1.f, 1.f));
-	objects.push_back(spaceship);
+	RespawnSpaceship();
+	currentStateTime = 3.0f;
 	scoreInt = 0;
 
 	
@@ -28,13 +32,14 @@ void GameplayScene::Start(SDL_Renderer* rend)
 	));
 
 	lives = new UIText(
-		rend, Vector2(GAME_WIDTH - 30, 14), 0.f, Vector2(1, 1), std::to_string(spaceship->hp), "resources/Hyperspace.ttf"
+		rend, Vector2(GAME_WIDTH - 30, 14), 0.f, Vector2(1, 1), std::to_string(spaceshipHealth), "resources/Hyperspace.ttf"
 	);
 	uiObjects.push_back(lives);
 }
 
 void GameplayScene::Update(float dt)
 {
+	currentStateTime += dt;
 	int asteroidsLeft = 0;
 	int objectsSize = objects.size();
 	for (int i = 0; i < objectsSize; i++){
@@ -89,21 +94,9 @@ void GameplayScene::Update(float dt)
 
 	for (auto it = objects.begin(); it != objects.end(); it++) {
 		if (Asteroid* a = dynamic_cast<Asteroid*>(*it)) {
-			if (spaceship != nullptr) {
+			if (spaceship != nullptr && currentStateTime > stateTimeThreshold) {
 				if (CheckColision(a->GetPosition(), a->GetRadius(), spaceship->GetPosition(), spaceship->GetRadius())) {
-					spaceship->hp--;
-					if (spaceship->hp >= 1) {
-						lives->ChangeText(std::to_string(spaceship->hp));
-						spaceship->SetPosition(Vector2(GAME_WIDTH / 2, GAME_HEIGHT / 2));
-					}
-					else {
-						spaceship->Destroy();
-						spaceship = nullptr;
-						a->Destroy();
-
-						finished = true;
-						targetScene = "Main Menu";
-					}
+					DestroySpaceship();
 				}
 			}
 
@@ -118,18 +111,30 @@ void GameplayScene::Update(float dt)
 		}
 	}
 
+	if (currentState == GameplayState::DEAD && currentStateTime > stateTimeThreshold) {
+		if (spaceshipHealth != 0) RespawnSpaceship();
+		else {
+			finished = true;
+			targetScene = "Main Menu";
+		}
+	}
+
 }
 
-void GameplayScene::Render(SDL_Renderer* rend)
+void GameplayScene::RespawnSpaceship()
 {
-	Scene::Render(rend);
-	std::cout << "Gameplay" << std::endl;
+	spaceship = new Spaceship(renderer, Vector2(GAME_WIDTH / 2, GAME_HEIGHT / 2), 0.0f, Vector2(1.f, 1.f));
+	objects.push_back(spaceship);
+	currentState = ALIVE;
+	currentStateTime = 0.f;
 }
 
-void GameplayScene::Exit()
+void GameplayScene::DestroySpaceship()
 {
-	for (auto it = objects.begin(); it != objects.end(); it++) delete (*it);
-	for (auto it = uiObjects.begin(); it != uiObjects.end(); it++) delete (*it);
-	objects.clear();
-	uiObjects.clear();
+	spaceship->Destroy();
+	spaceship = nullptr;
+	currentState = DEAD;
+	currentStateTime = 0.f;
+	spaceshipHealth--;
+	lives->ChangeText(std::to_string(spaceshipHealth));
 }

@@ -46,12 +46,3 @@ void MenuScene::Update(float dt)
 	}
 }
 
-void MenuScene::Render(SDL_Renderer* rend)
-{
-	Scene::Render(rend);
-}
-
-void MenuScene::Exit()
-{
-	
-}

@@ -8,18 +8,24 @@
 #include "UIText.h"
 #include <string>
 
+enum GameplayState {ALIVE, DEAD};
+
 class GameplayScene : public Scene {
 public:
 	GameplayScene() : Scene() {}
 
 	void Start(SDL_Renderer* rend) override;
 	void Update(float dt) override;
-	void Render(SDL_Renderer* rend) override;
-	void Exit() override;
 private:
 	Spaceship* spaceship;
 	SDL_Renderer* renderer;
 	UIText* lives;
 	UIText* score;
 	int scoreInt;
+	GameplayState currentState;
+	float currentStateTime;
+	const float stateTimeThreshold = 3.0f;
+	int spaceshipHealth;
+	void RespawnSpaceship();
+	void DestroySpaceship();
 };
