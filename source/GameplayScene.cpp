@@ -4,13 +4,16 @@ void GameplayScene::Start(SDL_Renderer* rend)
 {
 	Scene::Start(rend);
 	renderer = rend;
-	spaceship = new Spaceship(rend, Vector2(100.f, 100.f), 0.0f, Vector2(1.f, 1.f));
+	spaceship = new Spaceship(rend, Vector2(GAME_WIDTH / 2, GAME_HEIGHT / 2), 0.0f, Vector2(1.f, 1.f));
 	objects.push_back(spaceship);
 	scoreInt = 0;
+
+	
 	for (int i = 0; i < 10; i++) {
-		objects.push_back(new Asteroid(rend));
+		objects.push_back(new BigAsteroid(rend));
 	}
 
+	//--------UI
 	uiObjects.push_back(new UIText(
 		rend, Vector2(80, 14), 0.f, Vector2(1, 1), "Score: ", "resources/Hyperspace.ttf"
 	));
@@ -32,6 +35,42 @@ void GameplayScene::Start(SDL_Renderer* rend)
 
 void GameplayScene::Update(float dt)
 {
+	int asteroidsLeft = 0;
+	int objectsSize = objects.size();
+	for (int i = 0; i < objectsSize; i++){
+		if (BigAsteroid* big = dynamic_cast<BigAsteroid*>(objects[i])) {
+			asteroidsLeft++;
+			if (big->IsPendingDestroy()) {
+				scoreInt += 50;
+				score->ChangeText(std::to_string(scoreInt));
+				objects.push_back(new MediumAsteroid(renderer, big->GetPosition()));
+				objects.push_back(new MediumAsteroid(renderer, big->GetPosition()));
+			}
+		}
+	}
+
+	for (int i = 0; i < objectsSize; i++) {
+		if (MediumAsteroid* medium = dynamic_cast<MediumAsteroid*>(objects[i])) {
+			asteroidsLeft++;
+			if (medium->IsPendingDestroy()) {
+				scoreInt += 30;
+				score->ChangeText(std::to_string(scoreInt));
+				objects.push_back(new SmallAsteroid(renderer, medium->GetPosition()));
+				objects.push_back(new SmallAsteroid(renderer, medium->GetPosition()));
+			}
+		}
+	}
+
+	for (int i = 0; i < objectsSize; i++) {
+		if (SmallAsteroid* small = dynamic_cast<SmallAsteroid*>(objects[i])) {
+			asteroidsLeft++;
+			if (small->IsPendingDestroy()) {
+				scoreInt += 20;
+				score->ChangeText(std::to_string(scoreInt));
+			}
+		}
+	}
+
 	Scene::Update(dt);
 	
 	if (spaceship != nullptr) {
@@ -41,6 +80,11 @@ void GameplayScene::Update(float dt)
 		}
 	}
 
+	if (asteroidsLeft == 0) {
+		for (int i = 0; i < 10; i++) {
+			objects.push_back(new BigAsteroid(renderer));
+		}
+	}
 	
 
 	for (auto it = objects.begin(); it != objects.end(); it++) {
@@ -68,25 +112,8 @@ void GameplayScene::Update(float dt)
 					if (CheckColision(a->GetPosition(), a->GetRadius(), b->GetPosition(), b->GetRadius())) {
 						b->Destroy();
 						a->Destroy();
-						scoreInt += 50;
-						score->ChangeText(std::to_string(scoreInt));
 					}
-				/*
-					if (a->IsPendingDestroy()) {
-						
-						objects.push_back(new MediumAsteroid(renderer, a->GetPosition(), 4));
-						objects.push_back(new MediumAsteroid(renderer, a->GetPosition(), 4));
-					}
-				
-				
-					if (a->IsPendingDestroy()) {
-						objects.push_back(new SmallAsteroid(renderer, a->GetPosition(), 4));
-						objects.push_back(new SmallAsteroid(renderer, a->GetPosition(), 4));
-					}
-				*/
-				}
-				
-				
+				}	
 			}
 		}
 	}

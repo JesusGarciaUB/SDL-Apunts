@@ -1,7 +1,6 @@
 #pragma once
 #include "Scene.h"
 #include "Spaceship.h"
-#include "Asteroid.h"
 #include "BigAsteroid.h"
 #include "MediumAsteroid.h"
 #include "SmallAsteroid.h"

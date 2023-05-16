@@ -5,5 +5,5 @@
 class MediumAsteroid : public Asteroid {
 
 public:
-	MediumAsteroid(SDL_Renderer* rend, Vector2 pos, int vel);
+	MediumAsteroid(SDL_Renderer* rend, Vector2 pos);
 };
