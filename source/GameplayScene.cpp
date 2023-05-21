@@ -90,7 +90,17 @@ void GameplayScene::Update(float dt)
 			objects.push_back(new BigAsteroid(renderer));
 		}
 	}
-	
+
+	spawnEnemy += dt;
+	if (spawnEnemy >= 15.0f && canEnemySpawn) {
+		RespawnEnemy();
+		canEnemySpawn = false;
+	}
+
+	if (enemy != nullptr) {
+		if (enemy->BulletShooted())
+			objects.push_back(new EnemyBullet(renderer, enemy->GetPosition(), 550.0f));
+	}
 
 	for (auto it = objects.begin(); it != objects.end(); it++) {
 		if (Asteroid* a = dynamic_cast<Asteroid*>(*it)) {
@@ -107,6 +117,32 @@ void GameplayScene::Update(float dt)
 						a->Destroy();
 					}
 				}	
+			}
+		}
+		if (Enemy* e = dynamic_cast<Enemy*>(*it)) {
+			if (spaceship != nullptr && currentStateTime > stateTimeThreshold) {
+				if (CheckColision(e->GetPosition(), e->GetRadius(), spaceship->GetPosition(), spaceship->GetRadius())) {
+					DestroyEnemy();
+					DestroySpaceship();
+					scoreInt += 150;
+					score->ChangeText(std::to_string(scoreInt));
+				}
+			}
+			for (auto it2 = objects.begin(); it2 != objects.end() && !e->IsPendingDestroy(); it2++) {
+				if (Bullet* b = dynamic_cast<Bullet*>(*it2)) {
+					if (CheckColision(e->GetPosition(),	e->GetRadius(), b->GetPosition(), b->GetRadius())) {
+						b->Destroy();
+						e->Destroy();
+					}
+				}
+			}
+		}
+		if (EnemyBullet* eb = dynamic_cast<EnemyBullet*>(*it)) {
+			if (spaceship != nullptr && currentStateTime > stateTimeThreshold) {
+				if (CheckColision(eb->GetPosition(), eb->GetRadius(), spaceship->GetPosition(), spaceship->GetRadius())) {
+					eb->Destroy();
+					DestroySpaceship();
+				}
 			}
 		}
 	}
@@ -137,4 +173,20 @@ void GameplayScene::DestroySpaceship()
 	currentStateTime = 0.f;
 	spaceshipHealth--;
 	lives->ChangeText(std::to_string(spaceshipHealth));
+}
+
+void GameplayScene::RespawnEnemy() {
+
+
+	enemy = new Enemy(renderer);
+	objects.push_back(enemy);
+}
+
+void GameplayScene::DestroyEnemy() {
+
+	enemy->Destroy();
+	enemy = nullptr;
+
+	canEnemySpawn = true;
+	spawnEnemy = 0.0f;
 }

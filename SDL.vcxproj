@@ -22,6 +22,8 @@
     <ClCompile Include="source\Asteroid.cpp" />
     <ClCompile Include="source\BigAsteroid.cpp" />
     <ClCompile Include="source\Bullet.cpp" />
+    <ClCompile Include="source\Enemy.cpp" />
+    <ClCompile Include="source\EnemyBullet.cpp" />
     <ClCompile Include="source\GameEngine.cpp" />
     <ClCompile Include="source\GameObject.cpp" />
     <ClCompile Include="source\GameplayScene.cpp" />
@@ -40,6 +42,8 @@
     <ClInclude Include="source\Asteroid.h" />
     <ClInclude Include="source\BigAsteroid.h" />
     <ClInclude Include="source\Bullet.h" />
+    <ClInclude Include="source\Enemy.h" />
+    <ClInclude Include="source\EnemyBullet.h" />
     <ClInclude Include="source\GameEngine.h" />
     <ClInclude Include="source\GameObject.h" />
     <ClInclude Include="source\GameplayScene.h" />
